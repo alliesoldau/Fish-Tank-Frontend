@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header({ setSelectedEnvironment, selectedEnvironment }) {
+function Header({ setSelectedEnvironment }) {
 
     function onSelectEnvironment(e) {
         setSelectedEnvironment(e.target.value)
@@ -18,7 +18,6 @@ function Header({ setSelectedEnvironment, selectedEnvironment }) {
                         <input type="radio" value="fresh" name="environment" onChange={onSelectEnvironment}/>
                             <label>Fresh</label>
                     </div>
-                    <p>{selectedEnvironment}</p>
             </header>
         </div> 
     )

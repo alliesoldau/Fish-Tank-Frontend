@@ -2,12 +2,13 @@ import './App.css';
 import React, { useState } from 'react';
 import Header from './components/Header'
 import FishTank from './components/FishTank'
-
+import CritterDetails from './components/CritterDetails'
 
 function App() {
 
   const baseURL = "http://localhost:9292/"
   const [selectedEnvironment, setSelectedEnvironment] = useState("")
+  const [selectedCritter, setSelectedCritter] = useState([])
 
   return (
     <div className="App">
@@ -19,6 +20,10 @@ function App() {
         <FishTank 
           baseURL = {baseURL}
           selectedEnvironment = {selectedEnvironment}
+          setSelectedCritter = {setSelectedCritter}
+        />
+        <CritterDetails
+          selectedCritter={selectedCritter}
         />
       </div>
     </div>

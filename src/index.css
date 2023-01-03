@@ -22,15 +22,30 @@ code {
 
 .fish-tank-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
 .base-fish-tank {
-  border: solid 2px red;
+  border: solid 2px blue;
   display: flex;
+  flex-direction: column;
   width: 90vw;
   height: 60vh;
   margin: 5px;
+}
+
+.fish-tank-header {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.foods-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 
