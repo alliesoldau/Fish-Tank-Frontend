@@ -41,7 +41,7 @@ function DeleteaFish({ baseURL, selectedEnvironment, reload, setReload, setEditB
     return (
         <div className="deletea-fish" style={{ display: (deleteaFishToggle ? 'block' : 'none') }}>
             <form className="deletea-fish-form" onSubmit={handleSubmit}>
-                <p>delete a fish</p>
+                <p><i>Delete a Fish from this Tank</i></p>
                 <label><b>Critters:</b> </label>
                 <select
                     onChange={handleChange}

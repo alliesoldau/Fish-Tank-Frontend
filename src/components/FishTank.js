@@ -12,15 +12,15 @@ function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, se
     }, [selectedEnvironment, reload])
 
     // Map through the critter info to get the food name
-    const selectedEnvFood = selectedCritters.map((critter) => (
-        critter.food.food_name
-    ))
+    // const selectedEnvFood = selectedCritters.map((critter) => (
+    //     critter.food.food_name
+    // ))
 
     // Filter food to remove duplicates
-    function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
-    }
-    const uniqueFoods = selectedEnvFood.filter(onlyUnique);
+    // function onlyUnique(value, index, self) {
+    //     return self.indexOf(value) === index;
+    // }
+    // const uniqueFoods = selectedEnvFood.filter(onlyUnique);
 
     function handleAddFish() {
         setEditBoxToggle("addaFish")
@@ -38,12 +38,12 @@ function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, se
         <div className="fish-tank-container">
             <div className="fish-tank-header">
                 <h3>{selectedEnvironment.toUpperCase()} FISH TANK</h3>
-                <h4>Tank food requirements: </h4>
+                {/* <h4>Tank food requirements: </h4>
                 <div className="foods-container">
                     {uniqueFoods.map((food) => (
                         <ul>{food}</ul>
                     ))}
-                </div>
+                </div> */}
             </div>
             
             <div className="base-fish-tank">

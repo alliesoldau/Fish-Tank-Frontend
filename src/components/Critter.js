@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Critter({ critter, setSelectedCritter, setEditBoxToggle }) {
 
@@ -10,7 +10,7 @@ function Critter({ critter, setSelectedCritter, setEditBoxToggle }) {
     return(
         <div className="critter">
             <p>{critter.critter_name}</p>
-            <button className="critter-button" onClick={revealCritterDetails}>BUTTON</button>
+            <div className={critter.critter_type} onClick={revealCritterDetails}></div>
         </div> 
     )
 }

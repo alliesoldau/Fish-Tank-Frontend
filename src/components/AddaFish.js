@@ -56,7 +56,7 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
     return (
         <div className="adda-fish" style={{ display: (addaFishToggle ? 'block' : 'none') }}>
             <form className="adda-fish-form" onSubmit={handleSubmit}>
-                <p>add a fish</p>
+                <p><i>Add a Fish to this Tank</i></p>
                 <label><b>Critters:</b> </label>
                     <select
                         onChange={handleChange}

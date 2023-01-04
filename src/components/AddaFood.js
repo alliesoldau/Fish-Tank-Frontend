@@ -31,7 +31,7 @@ function AddaFood({ baseURL, setEditBoxToggle, addaFoodToggle }) {
     return (
         <div className="adda-food" style={{ display: (addaFoodToggle ? 'block' : 'none') }}>
             <form className="adda-fish-form" onSubmit={handleSubmit}>
-                <p>add a food</p>
+                <p><i>Add a Food Option for your Critters</i></p>
                 <div>
                     <label><b>Food name: </b></label>
                     <input 

@@ -7,8 +7,6 @@ function Critters({ selectedCritters, setSelectedCritter, setEditBoxToggle }) {
 
     return(
         <div className="critters">
-            {/* <p>Selected Critter: selectedCritter</p> */}
-            <ul>
                 {selectedCritters.map((critter) => (
                     <Critter
                         key={critter.id}
@@ -17,7 +15,6 @@ function Critters({ selectedCritters, setSelectedCritter, setEditBoxToggle }) {
                         setEditBoxToggle={setEditBoxToggle}
                     />
                 ))}
-            </ul>
         </div> 
     )
 }

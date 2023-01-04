@@ -56,6 +56,7 @@ function CritterDetails({ baseURL, selectedEnvironment, selectedCritter, details
 
         <div className="critter-details" style={{ display: (detailsToggle ? 'block' : 'none') }}>
             <form className="critter-details-form" onSubmit={handleSubmit}>
+                <p><i>Details of Selected Critter</i></p>
                 <p><b>Critter species:</b> {selectedCritter.critter_name}</p>
                 <p><b>Critter type:</b> {selectedCritter.critter_type}</p>
                 <p><b>Environment name:</b> {critterEnvDetails.environment_name}</p>
