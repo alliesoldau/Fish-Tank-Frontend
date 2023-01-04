@@ -15,14 +15,56 @@ function CritterDetails({ baseURL, selectedCritter }) {
         .then((food) => setCritterEnvDetails(food));
     },[selectedCritter])
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        console.log("form submitted")
+        //     fetch(`${baseURL}${selectedCritter.id}`, {
+        //         method: "PATCH",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({
+        //             body: critterFoodDetails,
+        //         }),
+        //     })
+        // .then((r) => r.json())
+        // .then((details) => console.log(details));
+    }   
+
+    function handleChange(e) {
+        setCritterFoodDetails({...critterFoodDetails, [e.target.name]: e.target.value});
+        console.log(critterFoodDetails)
+    }
+
     return(
         <div className="critter-details">
-            <p>Critter species: {selectedCritter.critter_name}</p>
-            <p>Critter type: {selectedCritter.critter_type}</p>
-            <p>Food name: {critterFoodDetails.food_name}</p>
-            <p>Food type: {critterFoodDetails.food_type}</p> 
-            <p>Environment name: {critterEnvDetails.environment_name}</p>
-            <p>Water temperature: {critterEnvDetails.water_temperature}</p>
+            <form className="critter-details-form" onSubmit={handleSubmit}>
+                <p><b>Critter species:</b> {selectedCritter.critter_name}</p>
+                <p><b>Critter type:</b> {selectedCritter.critter_type}</p>
+                <p><b>Environment name:</b> {critterEnvDetails.environment_name}</p>
+                <p><b>Water temperature:</b> {critterEnvDetails.water_temperature}deg F</p>
+                <div>
+                    <label><b>Food name:</b> </label>
+                    <input 
+                        value={critterFoodDetails.food_name}
+                        onChange={handleChange}
+                        type="string" 
+                        className="food_name" 
+                        name="food_name" 
+                    />
+                </div>
+                <div>
+                    <label><b>Food type:</b> </label>
+                    <input 
+                        value={critterFoodDetails.food_type}
+                        onChange={handleChange}
+                        type="string" 
+                        className="food_type" 
+                        name="food_type" 
+                    />
+                </div>
+                <button type='submit' className="submit">Submit</button>
+            </form>
         </div> 
     )
 }
