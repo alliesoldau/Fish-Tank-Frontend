@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import CritterDD from './CritterDD';
 
-function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, setReload }) {
+function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, setReload, reload }) {
 
     const [critterList, setCritterList] = useState([])
     const [fishToAdd, setFishToAdd] = useState(0)
@@ -50,7 +50,7 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
         .then((r) => r.json())
         .then((details) => console.log(details));
         setEditBoxToggle("")
-        setReload(true)
+        setReload(!reload)
     }
 
     return (

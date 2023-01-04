@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CritterDeleteDD from './CritterDeleteDD'
 
-function DeleteaFish({ baseURL, selectedEnvironment, setReload, setEditBoxToggle, deleteaFishToggle }) {
+function DeleteaFish({ baseURL, selectedEnvironment, reload, setReload, setEditBoxToggle, deleteaFishToggle }) {
 
     const [fishToDelete, setFishToDelete] = useState(0)
     const [critterList, setCritterList] = useState([])
@@ -35,7 +35,7 @@ function DeleteaFish({ baseURL, selectedEnvironment, setReload, setEditBoxToggle
             .then((RIPfish) => console.log(RIPfish));
 
         setEditBoxToggle("")
-        setReload(true)
+        setReload(!reload)
     }
 
     return (

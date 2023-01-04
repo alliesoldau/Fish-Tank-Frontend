@@ -3,7 +3,7 @@ import React from 'react';
 function FoodDD({ food }) {
 
     return (
-        <option>{food.food_name}</option>
+        <option value={food.id}>{food.food_name}</option>
     )
 }
 

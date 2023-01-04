@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FoodDD from './FoodDD';
 
-function CritterDetails({ baseURL, selectedCritter, detailsToggle }) {
+function CritterDetails({ baseURL, selectedEnvironment, selectedCritter, detailsToggle }) {
 
     const [allFoodInfo, setAllFoodInfo] = useState([])
     const [critterFoodDetails, setCritterFoodDetails] = useState([])
@@ -20,7 +20,7 @@ function CritterDetails({ baseURL, selectedCritter, detailsToggle }) {
         fetch(`${baseURL}food`)
         .then((r) => r.json())
         .then((food) => setAllFoodInfo(food));
-    }, [selectedCritter])
+    }, [selectedCritter, selectedEnvironment])
 
     const foodDD = allFoodInfo.map((food) => {
         return(
@@ -32,19 +32,7 @@ function CritterDetails({ baseURL, selectedCritter, detailsToggle }) {
     })
 
     function handleChange(e) {
-        if (e.target.value === "flakes") {
-            setNewFoodId(1)
-        } else if (e.target.value === "shrimp") {
-            setNewFoodId(2)
-        } else if (e.target.value === "crab") {
-            setNewFoodId(3)
-        } else if (e.target.value === "worms") {
-            setNewFoodId(4)
-        } else if (e.target.value === "algae") {
-            setNewFoodId(5)
-        } else if (e.target.value === "detritus") {
-            setNewFoodId(6)
-        }
+        setNewFoodId(e.target.value)
     }
 
     function handleSubmit(e) {
@@ -61,6 +49,7 @@ function CritterDetails({ baseURL, selectedCritter, detailsToggle }) {
             })
         .then((r) => r.json())
         .then((details) => console.log(details));
+        alert("Food preference has been updated")
     }   
 
     return(

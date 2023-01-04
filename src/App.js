@@ -68,6 +68,7 @@ function App() {
             baseURL = {baseURL}
             selectedCritter={selectedCritter}
             detailsToggle={detailsToggle}
+            selectedEnvironment={selectedEnvironment}
           />
           <AddaFish
             baseURL={baseURL}
@@ -75,6 +76,7 @@ function App() {
             setEditBoxToggle={setEditBoxToggle}
             addaFishToggle={addaFishToggle}
             setReload={setReload}
+            reload={reload}
           />
           <DeleteaFish
             baseURL = {baseURL}
@@ -82,10 +84,12 @@ function App() {
             deleteaFishToggle={deleteaFishToggle}
             selectedEnvironment={selectedEnvironment}
             setReload={setReload}
+            reload={reload}
           />
           <AddaFood
             setEditBoxToggle={setEditBoxToggle}
             addaFoodToggle={addaFoodToggle}
+            baseURL={baseURL}  
           />
         </div>
 
