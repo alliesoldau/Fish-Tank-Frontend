@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Critters from './Critters';
 
-function FishTank({ baseURL, selectedEnvironment, setSelectedCritter, setEditBoxToggle }) {
+function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, setEditBoxToggle }) {
 
     const [selectedCritters, setSelectedCritters] = useState([])
 
@@ -9,7 +9,7 @@ function FishTank({ baseURL, selectedEnvironment, setSelectedCritter, setEditBox
         fetch(`${baseURL}${selectedEnvironment}`)
         .then((r) => r.json())
         .then((critters) => setSelectedCritters(critters));
-    }, [selectedEnvironment])
+    }, [selectedEnvironment, reload])
 
     // Map through the critter info to get the food name
     const selectedEnvFood = selectedCritters.map((critter) => (
@@ -56,7 +56,6 @@ function FishTank({ baseURL, selectedEnvironment, setSelectedCritter, setEditBox
                     <button className="add-fish_button" onClick={handleAddFish}>Add Fish</button>
                     <button className="delete-fish_button" onClick={handleDeleteFish}>Delete a Fish</button>
                     <button className="add-food-button" onClick={handleAddFood}>Add a Food</button>
-
                 </div>
             </div> 
         </div>

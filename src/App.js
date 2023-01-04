@@ -17,6 +17,7 @@ function App() {
   const [addaFishToggle, setAddaFishToggle] = useState(false)
   const [deleteaFishToggle, setDeleteaFishToggle] = useState(false)
   const [addaFoodToggle, setAddaFoodToggle] = useState(false)
+  const [reload, setReload] = useState(false)
 
   useEffect(() => {
     console.log(editBoxToggle)
@@ -40,6 +41,11 @@ function App() {
       setAddaFishToggle(false)
       setDeleteaFishToggle(false)
       setAddaFoodToggle(true)
+    } else {
+      setDetailsToggle(false)
+      setAddaFishToggle(false)
+      setDeleteaFishToggle(false)
+      setAddaFoodToggle(false)
     }
   },[editBoxToggle])
 
@@ -52,6 +58,7 @@ function App() {
         />
         <FishTank 
           baseURL = {baseURL}
+          reload={reload}
           selectedEnvironment = {selectedEnvironment}
           setSelectedCritter = {setSelectedCritter}
           setEditBoxToggle={setEditBoxToggle}
@@ -63,8 +70,11 @@ function App() {
             detailsToggle={detailsToggle}
           />
           <AddaFish
+            baseURL={baseURL}
+            selectedEnvironment={selectedEnvironment}
             setEditBoxToggle={setEditBoxToggle}
             addaFishToggle={addaFishToggle}
+            setReload={setReload}
           />
           <DeleteaFish
             setEditBoxToggle={setEditBoxToggle}

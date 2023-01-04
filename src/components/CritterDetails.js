@@ -50,7 +50,7 @@ function CritterDetails({ baseURL, selectedCritter, detailsToggle }) {
     function handleSubmit(e) {
         e.preventDefault()
         console.log("form submitted")
-            fetch(`${baseURL}critter/${selectedCritter.id}`, {
+            fetch(`${baseURL}critter/food_update/${selectedCritter.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
