@@ -10,11 +10,6 @@ function App() {
   const [selectedEnvironment, setSelectedEnvironment] = useState("")
   const [selectedCritter, setSelectedCritter] = useState([])
 
-  useEffect(() => {
-    console.log(selectedCritter.critter_name)
-  },[selectedCritter])
-
-
   return (
     <div className="App">
       <div className="app-container">
@@ -28,6 +23,7 @@ function App() {
           setSelectedCritter = {setSelectedCritter}
         />
         <CritterDetails
+          baseURL = {baseURL}
           selectedCritter={selectedCritter}
         />
       </div>
