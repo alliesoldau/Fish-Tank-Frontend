@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import FoodDD from './FoodDD';
 
-function CritterDetails({ baseURL, selectedCritter }) {
+function CritterDetails({ baseURL, selectedCritter, detailsToggle }) {
 
-    console.log(selectedCritter)
-
-    const [updatedCritter, setUpdatedCritter] = useState(selectedCritter)
     const [allFoodInfo, setAllFoodInfo] = useState([])
     const [critterFoodDetails, setCritterFoodDetails] = useState([])
     const [critterEnvDetails, setCritterEnvDetails] = useState([])
     const [newFoodId, setNewFoodId] = useState(0)
-
-    // console.log(updatedCritter)
 
     useEffect(() => {
         fetch(`${baseURL}food/${selectedCritter.food_id}`)
@@ -25,7 +20,7 @@ function CritterDetails({ baseURL, selectedCritter }) {
         fetch(`${baseURL}food`)
         .then((r) => r.json())
         .then((food) => setAllFoodInfo(food));
-    },[selectedCritter])
+    }, [selectedCritter])
 
     const foodDD = allFoodInfo.map((food) => {
         return(
@@ -35,22 +30,6 @@ function CritterDetails({ baseURL, selectedCritter }) {
             />
         )
     })
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        console.log("form submitted")
-            fetch(`${baseURL}critter/${selectedCritter.id}`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    body: updatedCritter,
-                }),
-            })
-        .then((r) => r.json())
-        .then((details) => console.log(details));
-    }   
 
     function handleChange(e) {
         if (e.target.value === "flakes") {
@@ -66,12 +45,27 @@ function CritterDetails({ baseURL, selectedCritter }) {
         } else if (e.target.value === "detritus") {
             setNewFoodId(6)
         }
-        setUpdatedCritter({...updatedCritter, ["food_id"]: newFoodId})
-        console.log(updatedCritter)
     }
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        console.log("form submitted")
+            fetch(`${baseURL}critter/${selectedCritter.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    food_id: newFoodId,
+                }),
+            })
+        .then((r) => r.json())
+        .then((details) => console.log(details));
+    }   
+
     return(
-        <div className="critter-details">
+
+        <div className="critter-details" style={{ display: (detailsToggle ? 'block' : 'none') }}>
             <form className="critter-details-form" onSubmit={handleSubmit}>
                 <p><b>Critter species:</b> {selectedCritter.critter_name}</p>
                 <p><b>Critter type:</b> {selectedCritter.critter_type}</p>
@@ -82,7 +76,7 @@ function CritterDetails({ baseURL, selectedCritter }) {
                         onChange={handleChange}
                         name='food_name' 
                         id='food_name'>
-                            <option className="food_name">FOOD</option>
+                            <option className="food_name">{critterFoodDetails.food_name}</option>
                             {foodDD}
                     </select>
                 <p><b>Food type:</b> {critterFoodDetails.food_type}</p>

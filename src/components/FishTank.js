@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Critters from './Critters';
 
-function FishTank({ baseURL, selectedEnvironment, setSelectedCritter }) {
+function FishTank({ baseURL, selectedEnvironment, setSelectedCritter, setEditBoxToggle }) {
 
     const [selectedCritters, setSelectedCritters] = useState([])
 
@@ -22,6 +22,18 @@ function FishTank({ baseURL, selectedEnvironment, setSelectedCritter }) {
     }
     const uniqueFoods = selectedEnvFood.filter(onlyUnique);
 
+    function handleAddFish() {
+        setEditBoxToggle("addaFish")
+    }
+
+    function handleDeleteFish() {
+        setEditBoxToggle("deleteaFish")
+    } 
+
+    function handleAddFood() {
+        setEditBoxToggle("addafood")
+    } 
+
     return(
         <div className="fish-tank-container">
             <div className="fish-tank-header">
@@ -33,11 +45,19 @@ function FishTank({ baseURL, selectedEnvironment, setSelectedCritter }) {
                     ))}
                 </div>
             </div>
+            
             <div className="base-fish-tank">
                 <Critters 
                     selectedCritters={selectedCritters}
                     setSelectedCritter={setSelectedCritter}
+                    setEditBoxToggle={setEditBoxToggle}
                 />
+                <div className="add-fish-button-container">
+                    <button className="add-fish_button" onClick={handleAddFish}>Add Fish</button>
+                    <button className="delete-fish_button" onClick={handleDeleteFish}>Delete a Fish</button>
+                    <button className="add-food-button" onClick={handleAddFood}>Add a Food</button>
+
+                </div>
             </div> 
         </div>
     )

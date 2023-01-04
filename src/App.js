@@ -3,12 +3,45 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header'
 import FishTank from './components/FishTank'
 import CritterDetails from './components/CritterDetails'
+import AddaFish from './components/AddaFish'
+import DeleteaFish from './components/DeleteaFish'
+import AddaFood from './components/AddaFood'
 
 function App() {
 
   const baseURL = "http://localhost:9292/"
   const [selectedEnvironment, setSelectedEnvironment] = useState("")
   const [selectedCritter, setSelectedCritter] = useState([])
+  const [editBoxToggle, setEditBoxToggle] = useState("")
+  const [detailsToggle, setDetailsToggle] = useState(false)
+  const [addaFishToggle, setAddaFishToggle] = useState(false)
+  const [deleteaFishToggle, setDeleteaFishToggle] = useState(false)
+  const [addaFoodToggle, setAddaFoodToggle] = useState(false)
+
+  useEffect(() => {
+    console.log(editBoxToggle)
+    if (editBoxToggle === "critterDetails") {
+      setDetailsToggle(true)
+      setAddaFishToggle(false)
+      setDeleteaFishToggle(false)
+      setAddaFoodToggle(false)
+    } else if (editBoxToggle === "addaFish") {
+      setDetailsToggle(false)
+      setAddaFishToggle(true)
+      setDeleteaFishToggle(false)
+      setAddaFoodToggle(false)
+    } else if (editBoxToggle === "deleteaFish") {
+      setDetailsToggle(false)
+      setAddaFishToggle(false)
+      setDeleteaFishToggle(true)
+      setAddaFoodToggle(false)
+    } else if (editBoxToggle === "addafood") {
+      setDetailsToggle(false)
+      setAddaFishToggle(false)
+      setDeleteaFishToggle(false)
+      setAddaFoodToggle(true)
+    }
+  },[editBoxToggle])
 
   return (
     <div className="App">
@@ -21,11 +54,28 @@ function App() {
           baseURL = {baseURL}
           selectedEnvironment = {selectedEnvironment}
           setSelectedCritter = {setSelectedCritter}
+          setEditBoxToggle={setEditBoxToggle}
         />
-        <CritterDetails
-          baseURL = {baseURL}
-          selectedCritter={selectedCritter}
-        />
+        <div className="forms-container">
+          <CritterDetails
+            baseURL = {baseURL}
+            selectedCritter={selectedCritter}
+            detailsToggle={detailsToggle}
+          />
+          <AddaFish
+            setEditBoxToggle={setEditBoxToggle}
+            addaFishToggle={addaFishToggle}
+          />
+          <DeleteaFish
+            setEditBoxToggle={setEditBoxToggle}
+            deleteaFishToggle={deleteaFishToggle}
+          />
+          <AddaFood
+            setEditBoxToggle={setEditBoxToggle}
+            addaFoodToggle={addaFoodToggle}
+          />
+        </div>
+
       </div>
     </div>
   );

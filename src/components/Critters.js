@@ -1,7 +1,7 @@
 import React from 'react';
 import Critter from './Critter'
 
-function Critters({ selectedCritters, setSelectedCritter }) {
+function Critters({ selectedCritters, setSelectedCritter, setEditBoxToggle }) {
 
     // const [selectedCritter, setSelectedCritter] = useState([])
 
@@ -14,6 +14,7 @@ function Critters({ selectedCritters, setSelectedCritter }) {
                         key={critter.id}
                         critter={critter}
                         setSelectedCritter={setSelectedCritter}
+                        setEditBoxToggle={setEditBoxToggle}
                     />
                 ))}
             </ul>

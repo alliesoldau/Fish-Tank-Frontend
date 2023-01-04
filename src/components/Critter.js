@@ -1,8 +1,9 @@
 import React from 'react';
 
-function Critter({ critter, setSelectedCritter }) {
+function Critter({ critter, setSelectedCritter, setEditBoxToggle }) {
 
     function revealCritterDetails() {
+        setEditBoxToggle("critterDetails")
         setSelectedCritter(critter)
     }
 

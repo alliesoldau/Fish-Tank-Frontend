@@ -47,7 +47,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 60vh;
+  height: 50vh;
 }
 
 .fish-tank-header {
@@ -75,7 +75,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 90vw;
-  height: 50vh;
+  height: 40vh;
   margin: auto;
 }
 
@@ -98,10 +98,10 @@ body {
   margin: auto;
 }
 
-.critter-details {
+.forms-container {
   display: flex;
   flex-direction: column;
-  height: 25vh;
+  height: 35vh;
   background-color: var(--darkbase);
   border: 4px solid var(--darkbase);
   color: white;
@@ -111,9 +111,25 @@ body {
   margin-bottom: 15px;
 }
 
+.critter-details {
+  display: none;
+}
+
 .critter-details-form {
-  font-size: .75em;
+  font-size: .9em;
   margin: 2px;
+}
+
+.adda-fish {
+  display: none;
+}
+
+.deletea-fish {
+  display: none;
+}
+
+.adda-food {
+  display: none;
 }
 
 
