@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import FoodDD from './FoodDD';
 
 function CritterDetails({ baseURL, selectedCritter }) {
 
+    console.log(selectedCritter)
+
+    const [updatedCritter, setUpdatedCritter] = useState(selectedCritter)
+    const [allFoodInfo, setAllFoodInfo] = useState([])
     const [critterFoodDetails, setCritterFoodDetails] = useState([])
     const [critterEnvDetails, setCritterEnvDetails] = useState([])
+    const [newFoodId, setNewFoodId] = useState(0)
+
+    // console.log(updatedCritter)
 
     useEffect(() => {
         fetch(`${baseURL}food/${selectedCritter.food_id}`)
@@ -13,27 +21,53 @@ function CritterDetails({ baseURL, selectedCritter }) {
         fetch(`${baseURL}environment/${selectedCritter.environment_id}`)
         .then((r) => r.json())
         .then((food) => setCritterEnvDetails(food));
+
+        fetch(`${baseURL}food`)
+        .then((r) => r.json())
+        .then((food) => setAllFoodInfo(food));
     },[selectedCritter])
+
+    const foodDD = allFoodInfo.map((food) => {
+        return(
+            <FoodDD
+                key={food.food_id}
+                food={food}
+            />
+        )
+    })
 
     function handleSubmit(e) {
         e.preventDefault()
         console.log("form submitted")
-        //     fetch(`${baseURL}${selectedCritter.id}`, {
-        //         method: "PATCH",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify({
-        //             body: critterFoodDetails,
-        //         }),
-        //     })
-        // .then((r) => r.json())
-        // .then((details) => console.log(details));
+            fetch(`${baseURL}critter/${selectedCritter.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    body: updatedCritter,
+                }),
+            })
+        .then((r) => r.json())
+        .then((details) => console.log(details));
     }   
 
     function handleChange(e) {
-        setCritterFoodDetails({...critterFoodDetails, [e.target.name]: e.target.value});
-        console.log(critterFoodDetails)
+        if (e.target.value === "flakes") {
+            setNewFoodId(1)
+        } else if (e.target.value === "shrimp") {
+            setNewFoodId(2)
+        } else if (e.target.value === "crab") {
+            setNewFoodId(3)
+        } else if (e.target.value === "worms") {
+            setNewFoodId(4)
+        } else if (e.target.value === "algae") {
+            setNewFoodId(5)
+        } else if (e.target.value === "detritus") {
+            setNewFoodId(6)
+        }
+        setUpdatedCritter({...updatedCritter, ["food_id"]: newFoodId})
+        console.log(updatedCritter)
     }
 
     return(
@@ -43,26 +77,15 @@ function CritterDetails({ baseURL, selectedCritter }) {
                 <p><b>Critter type:</b> {selectedCritter.critter_type}</p>
                 <p><b>Environment name:</b> {critterEnvDetails.environment_name}</p>
                 <p><b>Water temperature:</b> {critterEnvDetails.water_temperature}deg F</p>
-                <div>
-                    <label><b>Food name:</b> </label>
-                    <input 
-                        value={critterFoodDetails.food_name}
+                <label><b>Food name:</b> </label>
+                    <select
                         onChange={handleChange}
-                        type="string" 
-                        className="food_name" 
-                        name="food_name" 
-                    />
-                </div>
-                <div>
-                    <label><b>Food type:</b> </label>
-                    <input 
-                        value={critterFoodDetails.food_type}
-                        onChange={handleChange}
-                        type="string" 
-                        className="food_type" 
-                        name="food_type" 
-                    />
-                </div>
+                        name='food_name' 
+                        id='food_name'>
+                            <option className="food_name">FOOD</option>
+                            {foodDD}
+                    </select>
+                <p><b>Food type:</b> {critterFoodDetails.food_type}</p>
                 <button type='submit' className="submit">Submit</button>
             </form>
         </div> 
