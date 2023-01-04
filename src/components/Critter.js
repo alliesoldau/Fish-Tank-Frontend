@@ -7,9 +7,9 @@ function Critter({ critter, setSelectedCritter }) {
     }
 
     return(
-        <div className="Critter">
+        <div className="critter">
             <p>{critter.critter_name}</p>
-            <button onClick={revealCritterDetails}>BUTTON</button>
+            <button className="critter-button" onClick={revealCritterDetails}>BUTTON</button>
         </div> 
     )
 }

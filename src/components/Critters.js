@@ -6,8 +6,7 @@ function Critters({ selectedCritters, setSelectedCritter }) {
     // const [selectedCritter, setSelectedCritter] = useState([])
 
     return(
-        <div className="Critters">
-            <p>Critters: </p>
+        <div className="critters">
             {/* <p>Selected Critter: selectedCritter</p> */}
             <ul>
                 {selectedCritters.map((critter) => (

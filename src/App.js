@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header'
 import FishTank from './components/FishTank'
 import CritterDetails from './components/CritterDetails'
@@ -9,6 +9,11 @@ function App() {
   const baseURL = "http://localhost:9292/"
   const [selectedEnvironment, setSelectedEnvironment] = useState("")
   const [selectedCritter, setSelectedCritter] = useState([])
+
+  useEffect(() => {
+    console.log(selectedCritter.critter_name)
+  },[selectedCritter])
+
 
   return (
     <div className="App">
