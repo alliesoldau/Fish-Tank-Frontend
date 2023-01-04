@@ -77,8 +77,11 @@ function App() {
             setReload={setReload}
           />
           <DeleteaFish
+            baseURL = {baseURL}
             setEditBoxToggle={setEditBoxToggle}
             deleteaFishToggle={deleteaFishToggle}
+            selectedEnvironment={selectedEnvironment}
+            setReload={setReload}
           />
           <AddaFood
             setEditBoxToggle={setEditBoxToggle}

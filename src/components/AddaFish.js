@@ -17,9 +17,6 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
         }
     },[selectedEnvironment])
 
-
-    console.log(tankID)
-
     useEffect(() => {
         fetch(`${baseURL}${selectedEnvironment}/critters`)
         .then((r) => r.json())
@@ -55,7 +52,6 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
         setEditBoxToggle("")
         setReload(true)
     }
-
 
     return (
         <div className="adda-fish" style={{ display: (addaFishToggle ? 'block' : 'none') }}>
