@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header'
 import FishTank from './components/FishTank'
 import CritterDetails from './components/CritterDetails'
+import AddaFishToEnv from './components/AddaFishToEnv'
 import AddaFish from './components/AddaFish'
 import DeleteaFish from './components/DeleteaFish'
 import AddaFood from './components/AddaFood'
@@ -15,6 +16,7 @@ function App() {
   const [selectedCritters, setSelectedCritters] = useState([])
   const [editBoxToggle, setEditBoxToggle] = useState("")
   const [detailsToggle, setDetailsToggle] = useState(false)
+  const [addaFishToEnvToggle, setAddaFishToEnvToggle] = useState(false)
   const [addaFishToggle, setAddaFishToggle] = useState(false)
   const [deleteaFishToggle, setDeleteaFishToggle] = useState(false)
   const [addaFoodToggle, setAddaFoodToggle] = useState(false)
@@ -24,26 +26,37 @@ function App() {
     console.log(editBoxToggle)
     if (editBoxToggle === "critterDetails") {
       setDetailsToggle(true)
+      setAddaFishToEnvToggle(false)
+      setAddaFishToggle(false)
+      setDeleteaFishToggle(false)
+      setAddaFoodToggle(false)
+    } else if (editBoxToggle === "addaFishToEnv") {
+      setDetailsToggle(false)
+      setAddaFishToEnvToggle(true)
       setAddaFishToggle(false)
       setDeleteaFishToggle(false)
       setAddaFoodToggle(false)
     } else if (editBoxToggle === "addaFish") {
       setDetailsToggle(false)
+      setAddaFishToEnvToggle(false)
       setAddaFishToggle(true)
       setDeleteaFishToggle(false)
       setAddaFoodToggle(false)
     } else if (editBoxToggle === "deleteaFish") {
       setDetailsToggle(false)
+      setAddaFishToEnvToggle(false)
       setAddaFishToggle(false)
       setDeleteaFishToggle(true)
       setAddaFoodToggle(false)
     } else if (editBoxToggle === "addafood") {
       setDetailsToggle(false)
+      setAddaFishToEnvToggle(false)
       setAddaFishToggle(false)
       setDeleteaFishToggle(false)
       setAddaFoodToggle(true)
     } else {
       setDetailsToggle(false)
+      setAddaFishToEnvToggle(false)
       setAddaFishToggle(false)
       setDeleteaFishToggle(false)
       setAddaFoodToggle(false)
@@ -72,6 +85,11 @@ function App() {
             selectedCritter={selectedCritter}
             detailsToggle={detailsToggle}
             selectedEnvironment={selectedEnvironment}
+          />
+          <AddaFishToEnv
+            setEditBoxToggle={setEditBoxToggle}
+            addaFishToEnvToggle={addaFishToEnvToggle}
+            baseURL={baseURL} 
           />
           <AddaFish
             baseURL={baseURL}

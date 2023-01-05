@@ -130,6 +130,10 @@ h3 {
   margin: 2px;
 }
 
+.adda-fish-to-env {
+  display: none;
+}
+
 .adda-fish {
   display: none;
 }
@@ -144,6 +148,11 @@ h3 {
 
 button {
   margin: 5px;
+}
+
+button.add-fish-to-env_button {
+  background-color: var(--brightaccent);
+  color: white;
 }
 
 button.add-fish_button {

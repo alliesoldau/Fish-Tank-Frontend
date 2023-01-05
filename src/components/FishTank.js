@@ -20,6 +20,10 @@ function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, se
     // }
     // const uniqueFoods = selectedEnvFood.filter(onlyUnique);
 
+    function handleAddFishToEnv() {
+        setEditBoxToggle("addaFishToEnv")
+    }
+
     function handleAddFish() {
         setEditBoxToggle("addaFish")
     }
@@ -51,9 +55,10 @@ function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, se
                     setEditBoxToggle={setEditBoxToggle}
                 />
                 <div className="add-fish-button-container">
-                    <button className="add-fish_button" onClick={handleAddFish}>Add Fish</button>
-                    <button className="delete-fish_button" onClick={handleDeleteFish}>Delete a Fish</button>
-                    <button className="add-food-button" onClick={handleAddFood}>Add a Food</button>
+                    <button className="add-fish-to-env_button" onClick={handleAddFishToEnv}>Add Fish to Evironment</button>
+                    <button className="add-fish_button" onClick={handleAddFish}>Add Fish to Tank</button>
+                    <button className="delete-fish_button" onClick={handleDeleteFish}>Delete Fish from Tank</button>
+                    <button className="add-food-button" onClick={handleAddFood}>Add a Food Option</button>
                 </div>
             </div> 
         </div>
