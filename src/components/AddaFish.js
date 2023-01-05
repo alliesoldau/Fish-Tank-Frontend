@@ -1,12 +1,13 @@
 import React, { useState, useEffect} from 'react';
 import CritterDD from './CritterDD';
 
-function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, selectedCritters, setReload, reload }) {
+function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, selectedCritters, handleAddFishToTank }) {
 
     const [critterList, setCritterList] = useState([])
     const [truncatedCritterList, setTruncatedCritterList] = useState([])
     const [fishToAdd, setFishToAdd] = useState(0)
     const [tankID, setTankID] = useState(0)
+
 
     useEffect(() => {
         if (selectedEnvironment === 'brackish') {
@@ -28,7 +29,6 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
         fetch(`${baseURL}${selectedEnvironment}/tank/unusedCritters`)
         .then((r) => r.json())
         .then((critters) => setTruncatedCritterList(critters));
-        console.log(truncatedCritterList)
     },[critterList])
 
     const critterDD = truncatedCritterList.map((critter) => {
@@ -45,7 +45,12 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
     }
 
     function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
+        
+            fetch(`${baseURL}/critter/${fishToAdd}`)
+            .then((r) => r.json())
+            .then((critter) => handleAddFishToTank(critter));
+
             fetch(`${baseURL}critter/tank_update/${fishToAdd}`, {
                 method: "PATCH",
                 headers: {
@@ -56,9 +61,7 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
                 }),
             })
         .then((r) => r.json())
-        .then((details) => console.log(details));
         setEditBoxToggle("")
-        setReload(!reload)
     }
 
     return (

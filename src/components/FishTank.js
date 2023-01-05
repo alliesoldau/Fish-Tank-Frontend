@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import Critters from './Critters';
 
 function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, setEditBoxToggle, selectedCritters, setSelectedCritters }) {
@@ -55,8 +55,8 @@ function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, se
                     setEditBoxToggle={setEditBoxToggle}
                 />
                 <div className="add-fish-button-container">
-                    <button className="add-fish-to-env_button" onClick={handleAddFishToEnv}>Add Fish to Evironment</button>
-                    <button className="add-fish_button" onClick={handleAddFish}>Add Fish to Tank</button>
+                    <button className="add-fish-to-env_button" onClick={handleAddFishToEnv}>Add Critter to Evironment</button>
+                    <button className="add-fish_button" onClick={handleAddFish}>Add Critter to Tank</button>
                     <button className="delete-fish_button" onClick={handleDeleteFish}>Delete Fish from Tank</button>
                     <button className="add-food-button" onClick={handleAddFood}>Add a Food Option</button>
                 </div>
