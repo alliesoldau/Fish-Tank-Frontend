@@ -12,6 +12,7 @@ function App() {
   const baseURL = "http://localhost:9292/"
   const [selectedEnvironment, setSelectedEnvironment] = useState("")
   const [selectedCritter, setSelectedCritter] = useState([])
+  const [selectedCritters, setSelectedCritters] = useState([])
   const [editBoxToggle, setEditBoxToggle] = useState("")
   const [detailsToggle, setDetailsToggle] = useState(false)
   const [addaFishToggle, setAddaFishToggle] = useState(false)
@@ -62,6 +63,8 @@ function App() {
           selectedEnvironment = {selectedEnvironment}
           setSelectedCritter = {setSelectedCritter}
           setEditBoxToggle={setEditBoxToggle}
+          selectedCritters={selectedCritters}
+          setSelectedCritters={setSelectedCritters}
         />
         <div className="forms-container">
           <CritterDetails
@@ -77,6 +80,7 @@ function App() {
             addaFishToggle={addaFishToggle}
             setReload={setReload}
             reload={reload}
+            selectedCritters={selectedCritters}
           />
           <DeleteaFish
             baseURL = {baseURL}

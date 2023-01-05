@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Critters from './Critters';
 
-function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, setEditBoxToggle }) {
-
-    const [selectedCritters, setSelectedCritters] = useState([])
+function FishTank({ baseURL, reload, selectedEnvironment, setSelectedCritter, setEditBoxToggle, selectedCritters, setSelectedCritters }) {
 
     useEffect(() => {
         fetch(`${baseURL}${selectedEnvironment}`)

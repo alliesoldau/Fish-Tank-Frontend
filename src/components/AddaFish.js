@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import CritterDD from './CritterDD';
 
-function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, setReload, reload }) {
+function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, selectedCritters, setReload, reload }) {
 
     const [critterList, setCritterList] = useState([])
+    const [truncatedCritterList, setTruncatedCritterList] = useState([])
     const [fishToAdd, setFishToAdd] = useState(0)
     const [tankID, setTankID] = useState(0)
 
@@ -23,7 +24,14 @@ function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironme
         .then((critters) => setCritterList(critters));
     },[selectedEnvironment])
 
-    const critterDD = critterList.map((critter) => {
+    useEffect(() => {
+        fetch(`${baseURL}${selectedEnvironment}/tank/unusedCritters`)
+        .then((r) => r.json())
+        .then((critters) => setTruncatedCritterList(critters));
+        console.log(truncatedCritterList)
+    },[critterList])
+
+    const critterDD = truncatedCritterList.map((critter) => {
         return(
             <CritterDD
                 key={critter.id}
