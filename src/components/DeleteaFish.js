@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CritterDeleteDD from './CritterDeleteDD'
 
-function DeleteaFish({ baseURL, selectedEnvironment, reload, setReload, setEditBoxToggle, deleteaFishToggle }) {
+function DeleteaFish({ baseURL, selectedEnvironment, reload, setReload, setEditBoxToggle, deleteaFishToggle, handleDeleteFishFromTank }) {
 
     const [fishToDelete, setFishToDelete] = useState(0)
     const [critterList, setCritterList] = useState([])
@@ -28,6 +28,11 @@ function DeleteaFish({ baseURL, selectedEnvironment, reload, setReload, setEditB
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        fetch(`${baseURL}/critter/${fishToDelete}`)
+            .then((r) => r.json())
+            .then((critter) => handleDeleteFishFromTank(critter));
+
         fetch(`${baseURL}critter/delete/${fishToDelete}`, {
             method: "DELETE",
           })

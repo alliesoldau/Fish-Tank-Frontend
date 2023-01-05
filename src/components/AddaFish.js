@@ -1,13 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import CritterDD from './CritterDD';
 
-function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, selectedCritters, handleAddFishToTank }) {
+function AddaFish({ setEditBoxToggle, baseURL, addaFishToggle, selectedEnvironment, truncatedCritterList, setTruncatedCritterList, handleAddFishToTank }) {
 
     const [critterList, setCritterList] = useState([])
-    const [truncatedCritterList, setTruncatedCritterList] = useState([])
     const [fishToAdd, setFishToAdd] = useState(0)
     const [tankID, setTankID] = useState(0)
-
 
     useEffect(() => {
         if (selectedEnvironment === 'brackish') {

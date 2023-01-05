@@ -20,6 +20,9 @@ function CritterDetails({ baseURL, selectedEnvironment, selectedCritter, details
         fetch(`${baseURL}food`)
         .then((r) => r.json())
         .then((food) => setAllFoodInfo(food));
+
+        console.log(critterFoodDetails)
+
     }, [selectedCritter, selectedEnvironment])
 
     const foodDD = allFoodInfo.map((food) => {

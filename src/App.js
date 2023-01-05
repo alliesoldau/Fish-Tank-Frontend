@@ -20,6 +20,8 @@ function App() {
   const [addaFishToggle, setAddaFishToggle] = useState(false)
   const [deleteaFishToggle, setDeleteaFishToggle] = useState(false)
   const [addaFoodToggle, setAddaFoodToggle] = useState(false)
+  const [truncatedCritterList, setTruncatedCritterList] = useState([])
+
 
 
   useEffect(() => {
@@ -63,8 +65,17 @@ function App() {
   },[editBoxToggle])
 
   function handleAddFishToTank(addMeToTank) {
-    console.log(addMeToTank)
     setSelectedCritters([...selectedCritters, addMeToTank])
+  }
+
+  function handleNewCritterInEnv(newCritter) { 
+    setTruncatedCritterList([...truncatedCritterList, newCritter])
+  }
+
+  function handleDeleteFishFromTank() {
+    fetch(`${baseURL}${selectedEnvironment}`)
+        .then((r) => r.json())
+        .then((critters) => setSelectedCritters(critters));
   }
 
   return (
@@ -93,20 +104,23 @@ function App() {
             setEditBoxToggle={setEditBoxToggle}
             addaFishToEnvToggle={addaFishToEnvToggle}
             baseURL={baseURL} 
+            handleNewCritterInEnv={handleNewCritterInEnv}
           />
           <AddaFish
             baseURL={baseURL}
             selectedEnvironment={selectedEnvironment}
             setEditBoxToggle={setEditBoxToggle}
             addaFishToggle={addaFishToggle}
-            selectedCritters={selectedCritters}
             handleAddFishToTank={handleAddFishToTank}
+            setTruncatedCritterList={setTruncatedCritterList}
+            truncatedCritterList={truncatedCritterList}
           />
           <DeleteaFish
             baseURL = {baseURL}
             setEditBoxToggle={setEditBoxToggle}
             deleteaFishToggle={deleteaFishToggle}
             selectedEnvironment={selectedEnvironment}
+            handleDeleteFishFromTank={handleDeleteFishFromTank}
           />
           <AddaFood
             setEditBoxToggle={setEditBoxToggle}

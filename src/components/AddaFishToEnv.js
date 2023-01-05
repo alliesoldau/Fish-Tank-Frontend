@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FoodDD from './FoodDD';
 
-function AddaFishToEv({ baseURL, setEditBoxToggle, addaFishToEnvToggle }) {
+function AddaFishToEv({ baseURL, setEditBoxToggle, addaFishToEnvToggle, handleNewCritterInEnv }) {
 
     const [allFoodInfo, setAllFoodInfo] = useState([])
 
@@ -29,7 +29,6 @@ function AddaFishToEv({ baseURL, setEditBoxToggle, addaFishToEnvToggle }) {
 
     function handleChange(e) {
         setNewCritter({...newCritter, [e.target.name]: e.target.value})
-        console.log(newCritter)
     }
 
     function handleSubmit(e) {
@@ -47,6 +46,7 @@ function AddaFishToEv({ baseURL, setEditBoxToggle, addaFishToEnvToggle }) {
         })
     })
         setEditBoxToggle("")
+        handleNewCritterInEnv(newCritter)
     }
 
     return (
